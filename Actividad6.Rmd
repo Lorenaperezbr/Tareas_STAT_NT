@@ -1,0 +1,105 @@
+---
+title: "Actividad 6"
+author: "Lorena Pérez"
+date: "9/5/2021"
+output: 
+  pdf_document:
+    number_sections: true
+    extra_dependencies:
+      bbm: null
+      amsthm: null
+      amsmath: null
+      # float: null
+      babel: ["spanish"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto Federico como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT creado la semana pasada.
+Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
+
+
+# Ejercicio 1
+
+Con los datos `mpg` que se encuentran disponible en `ggplot2` hacer un gráfico con las siguientes características:
+
+- Un diagrama de dispersión de  `hwy` vs `cty` 
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+library(ggplot2)
+names(mpg)
+graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point()+theme(aspect.ratio = 1)
+graf1 
+```
+
+- Incluir usando `labs` el nombre de los ejes, título informativo y nombre de la leyenda
+
+Usar `?mpg` para ver la descripción de las variables.
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point()+theme(aspect.ratio = 1)
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())
+graf1 
+```
+
+# Ejercicio 2
+
+ En el gráfico anterior hay un problema de sobre ploteo, esto es hay más de una observación en algunas combinaciones de  `cty` y `hwy`. 
+ 
+1. Hacer el  gráfico anterior y usá transparencia (`alpha`) para ver el problema de sobre ploteo.
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+ graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point(alpha = 1 / 3)+theme(aspect.ratio = 1)
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())
+graf1 
+
+``` 
+ 
+2. Hacer el  gráfico anterior y usá  `geom_jitter()`  para ver el problema de sobre ploteo.
+ 
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+ graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point(alpha = 1 / 3)+theme(aspect.ratio = 1)+geom_jitter()
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())
+graf1 
+
+```
+
+3. ¿Qué opción te resulta más apropiada y porqué ? 
+ 
+#  Ejercicio 3
+
+Usá como base el gráfico del ejercicio 2 con `geom_jitter.
+
+1. Coloreá usando la variable `class`
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+ graf1 <- ggplot(mpg,aes(x = hwy, y = cty, colour="class"))+ geom_point(alpha = 1 / 3)+theme(aspect.ratio = 1)+geom_jitter()
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())+scale_color_discrete(name = "Class")
+graf1 
+```
+
+2. Usá el gráfico anterior pero cambiando la paleta de colores a `Dark2`
+  Chequear la ayuda de `?scale_colour_brewer`. Para mirar otras posibles paletas visitar: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+ 
+ graf1 <- ggplot(mpg,aes(x = hwy, y = cty, color="class"))+ geom_point(alpha = 1 / 3)+theme(aspect.ratio = 1)+geom_jitter()
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon")+scale_color_discrete(name = "Class")+scale_colour_brewer(palette ="Dark2")
+graf1 
+
+```
+
+3. Usá la variable `class` para crear un gráfico para cada subconjunto, mirá `?facet_wrap`.
+
+```{r eval=FALSE, include=TRUE, echo = TRUE}
+ graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point(alpha = 1 / 3)+theme(aspect.ratio = 1)+geom_jitter()
++ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon")+scale_color_discrete(name = "Class")+facet_wrap( ~class)
+graf1 
+
+```
