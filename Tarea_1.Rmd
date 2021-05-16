@@ -43,7 +43,7 @@ Si un ejercicio no lo pudiste realizar pero intentaste diferentes formas **no** 
 \newcommand{\F}{\bs{\mathcal{F}}}
 \renewcommand{\v}{\bs{v}}
 \renewcommand{\bfdefault}{m} <!-- Para que no salgan en negrita los headers -->
-
+\newcommand{\m}{\ \newline\textcolor{blue}{Comentario: }\textcolor{red}}
 
 
 # Ejercicio 1
@@ -70,11 +70,13 @@ typeof(z) #character
 ### ¿Cuál es la diferencia entre `c(4, 3, 2, 1)` y `4:1`?
 Aunque ambos son un vector (verificación mediante is.vector), el primero es de tipo numérico mientras que el segundo es integer (is.vector)
 
+\m{Correcto}
+
 ## Parte 2: `factor`
 
 Dado el siguiente `factor` `x`:
  
-  ```{r echo = TRUE, include = TRUE}
+```{r echo = TRUE, include = TRUE}
 x <-
   factor(c( "alto","bajo","medio","alto","muy alto","bajo","medio","alto","ALTO", "MEDIO","BAJO","MUY ALTO","QUE LOCO","QUE LOCO","QUE LOCO","A","B","C","GUAU","GOL","MUY BAJO","MUY BAJO","MUY ALTO"))
 
@@ -104,7 +106,7 @@ for (i in 1:length(xx)){
   } #else {xxx[i]=xx[i]
 }
 xx<-factor(xxx,levels=c("bajo","medio","alto"),labels=c("B","M","A"))
-
+xx
 ```
 *Observación**:
  
@@ -118,6 +120,8 @@ Para ello usá el vector `xx` que obtuviste en la parte anterior.
 ```{r echo = TRUE, include = TRUE}
 dataf<- as.data.frame(xx)
 ```
+
+\m{Buen uso de funciones pero los resultados son incorrectos, revisar solución.}
 
 ## Parte 2: Listas
 
@@ -143,9 +147,13 @@ lista_t1<-list(h,u,palabra,fecha)
 lista_t1[[2]][1,3] #El elemento es el 9 y se encuentra en la tercera columna
 ```
 
+\m{Correcto}
+
 ### ¿Cuál es la diferencia entre hacer `lista_t1[[2]][] <- 0` y `lista_t1[[2]] <- 0`?
 La primer opción asigna el valor 0 a cada elemento del segundo elemento de la lista, es decir a la matriz u.
 La segunda por el contrario asigna el valor cero al segundo elemento de la lista, es decir este deja de ser la matriz original u y ahora es cero.
+
+\m{Correcto}
 
 ### Iteración
 Iterá sobre la el objeto `lista_t1` y obtené la clase de cada elemento teniendo el cuenta que si la longitud de la clase del elemento es mayor a uno nos quedamos con el último elemento.
@@ -163,8 +171,11 @@ for (i in 1:length(lista_t1)){
     }
   }
 }
+vect
 ```
 **Pista**: Revisá la familia de funciones `apply`.
+
+\m{Incorrecto}
 
 ### Iteración (2)
 
@@ -181,7 +192,7 @@ for (i in 1:length(ultimas10)){
 }
 hoyes2<-paste("La fecha en este momento es",ultimas10)
 ```
-
+\m{Correcto}
 ## Parte 3: Matrices
 
 ### Generá una matriz $A$ de dimensión $4*3$ y una matriz $B$ de dimensión $4*2$ con números aleatorios usando alguna función predefinda en R.
@@ -190,15 +201,17 @@ hoyes2<-paste("La fecha en este momento es",ultimas10)
 A<-matrix(sample(1:12),nrow=4,ncol=3)
 B<-matrix(sample(1:8),nrow=4,ncol=2)
 ```
+\m{Correcto}
 
 ### Calculá el producto elemento a elemento de la primera columna de la matriz $A$ por la última columna de la matriz $B$.
 ```{r echo = TRUE, include = TRUE}
 prodelem<-A[,1]*B[,ncol(B)]
 ```
+\m{Correcto}
 
 ### Calculá el producto matricial entre $D = A^TB$. Luego seleccioná los elementos de la primer y tercera fila de la segunda columna (en un paso).
-```{r echo = TRUE, include = TRUE}
 
+```{r echo = TRUE, include = TRUE}
 pto = function(M1, M2){
   prod = matrix(0 , dim(M1)[1] , dim(M2)[2] , TRUE )
   for ( i in 1:dim(M1)[1] ) {
@@ -215,8 +228,10 @@ pto(t(A),B)
 D=t(A)%*%B
 seleccionar<-cbind(D[1,2],D[3,2])
 ```
+\m{Correcto}
 
 ###  Usá las matrices $A$ y $B$ de forma tal de lograr una matriz $C$ de dimensión $4*5$. Con la función `attributes` inspeccioná los atributos de C. Posteriormente renombrá filas y columnas como "fila_1", "fila_2"..."columna_1", "columna_2", vuelvé a inspeccionar los atributos. Finalmente, generalizá y escribí una función que reciba como argumento una matriz y devuelva como resultado la misma matriz con columnas y filas con nombres.
+
 ```{r echo = TRUE, include = TRUE}
 C<-cbind(A,B)
 attributes(C)
@@ -234,7 +249,11 @@ nombrarmatriz = function(M1){
   colnames(M1)<-columnas
   return (M1)
 }
+
+C<-cbind(A,B)
+nombrarmatriz(C)
 ```
+\m{Muy bien!}
 ### Puntos Extra: genelarizá la función para que funcione con arrays de forma que renombre filas, columnas y matrices.
 
 # Ejercicio 2
@@ -244,15 +263,19 @@ nombrarmatriz = function(M1){
 ### ¿Qué hace la función `ifelse()` del paquete `base` de R?
 La función tiene la misma lógica que usar if y else, pero en una misma línea de código. Requiere 3 argumentos: la condición a evaluar, resultado si dicha condición se cumple, y resultado si la misma no se cumple.
 
+\m{Correcto}
+
 ### Dado el vector $x$ tal que: `x <- c(8, 6, 22, 1, 0, -2, -45)`, utilizando la función `ifelse()` del paquete `base`, reemplazá todos los elementos mayores estrictos a `0` por `1`, y todos los elementos menores o iguales a `0` por `0`.
 
 ```{r echo = TRUE, include = TRUE}
 x <- c(8, 6, 22, 1, 0, -2, -45)
 x<-ifelse(x>0,1,0)
 ```
+\m{Correcto}
 
 # ¿Por qué no fué necesario usar un loop ?
 Porque la función ifelse recorre todo el objeto implícitamente, en este caso x, por lo tanto no hay que especificarle los i a evaluar.
+\m{Correcto, es vectorizada}
 
 ## Parte 2: `while()` loops
 
@@ -263,6 +286,7 @@ while (condición)
 {
   acción
 }
+\m{Correcto}
 
 ### Dada la estructura siguiente, ¿Cuál es el valor del objeto `suma`? Responda sin realizar el cálculo en `R`.
 
@@ -276,7 +300,7 @@ while(i < 6){
 }
 ```
 0+1+2+3+1+2+3=12
-
+\m{Incorrecto es NA}
 
 ### Modificá la estructura anterior para que `suma` valga 0 si el vector tiene largo menor a 5, o que sume los primeros 5 elementos si el vector tiene largo mayor a 5. A partir de ella generá una fución que se llame `sumar_si` y verificá que funcione utilizando los vectores `y <- c(1:3)`, `z <- c(1:15)`.
 
@@ -309,6 +333,8 @@ z <- c(1:15)
 sumar_si(y)
 sumar_si(z)
 ```
+\m{Correcto}
+
 ### Generá una estructura que multiplique los números naturales (empezando por el 1) hasta que dicha multiplicación supere el valor `10000`. Cuánto vale dicha productoria?
 
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
@@ -316,10 +342,12 @@ productoria <- 1
 numero <- 0
 while( productoria<=10000){
   numero=numero+1
-  productoria = productoria*i      
+  productoria = productoria*numero      
 }
 productoria
 ```
+\m{Es numero en vez de i. Estaba mal, pero cambiando eso esta ok.}
+
 ## Parte 3: Ordenar
 
 ### Generá una función `ordenar_x()`que para cualquier vector numérico, ordene sus elementos de menor a mayor. Por ejemplo:
@@ -352,6 +380,8 @@ prueba2<-c((sample(3:10)))
 ordenar_x(prueba)
 ordenar_x(prueba2)
 ```
+\m{Correcto, agregar set.seed}
+
 ### ¿Qué devuelve `order(order(x))`?
 
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
@@ -359,6 +389,8 @@ x <- c(3,4,5,-2,1)
 #La función order me devuelve la posición en la que se encuentran los elementos ordenados, por default de menor a mayor. Es decir para x devolverá c(4,5,1,2,3). Entonces si vuelvo a aplicar order en el nuevo vector de indices, obtendré en el primer elemento la posición o ranking del mismo en el vector ordenado. Esto es equivalente a usar rank(x)
 order(order(x))
 ```
+\m{Correcto}
+
 # Ejercicios Extra
 
 Esta parte es opcional pero de hacerla tendrán puntos extra.
@@ -432,3 +464,5 @@ f3 <- factor(letters, levels = rev(letters))
 #En este caso los elementos del factor f3 son a:z, tal como se definen originalmente. La función rev se aplica únicamente a los levels, obteniendo los nuevos levels z:a
 #En conclusión, f1 y f2 coinciden en sus elementos mientras que difieren en sus levels. f1 y f3 coinciden en los levels pero difieren en los elementos. Finalmente, f2 y f3 no coinciden en nada, ni en elementos ni en levels.
 ```
+
+\m{Muy buen trabajo. Revisar la solución en los errores o extras.}
