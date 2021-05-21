@@ -13,9 +13,7 @@ output:
       babel: ["spanish"]
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+\newcommand{\m}{\ \newline\textcolor{blue}{Comentario: }\textcolor{red}}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -43,10 +41,10 @@ graf1
 Usar `?mpg` para ver la descripción de las variables.
 
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
-graf1 <- ggplot(mpg,aes(x = hwy, y = cty))+ geom_point()+theme(aspect.ratio = 1)
-+ labs(title="Relación entre el consumo de combustible por milla en carretera y el consumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())
-graf1 
+graf1 +
+  labs(title="Relación entre el consumo de \ncombustible por milla en carretera y el \nconsumo de combustible por milla en la ciudad",x = "Hghway miles per gallon", y = "City miles per gallon",legend.title = element_blank())
 ```
+\m{Al haber definido el objeto en la parte anterior no es necesario volver a escribir ese código podes reutilizar el objeto y añadirle las capas necesarias.}
 
 # Ejercicio 2
 
@@ -71,6 +69,8 @@ graf1
 ```
 
 3. ¿Qué opción te resulta más apropiada y porqué ? 
+
+\m{???}
  
 #  Ejercicio 3
 
@@ -103,3 +103,5 @@ graf1
 graf1 
 
 ```
+
+\m{Muy buen trabajo Lorena! A mejorar: identar el código (importante para que sea más legible) y usar tidy = TRUE más un límite en el ancho o styler para que no quede código de los chunks fuera del documento. Notar que podes reutilizar el objeto ggplot y solo añadir las capas que quieras luego. Por último, los títulos deben ser concretos y entrar en el gráfico y los chunks no deberían tener eval FALSE}

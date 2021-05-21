@@ -5,6 +5,7 @@ date: "9/5/2021"
 output: pdf_document
 ---
 
+\newcommand{\m}{\ \newline\textcolor{blue}{Comentario: }\textcolor{red}}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -39,6 +40,7 @@ graf
 graf<-ggplot(data = propinas, aes(x = total, y = propina, colour = fuma)) + geom_point() + theme(aspect.ratio = 1)+labs(x = "Total gastado en dólares", y = "Propina en dólares",legend.title = "Fumador")
 graf
 ```
+\m{Error al querer modificar la leyenda del color.}
 
 4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
 
@@ -67,6 +69,8 @@ graf
 graf<-ggplot(data = propinas, aes(x = total, y = propina, colour = fuma)) + geom_point() + geom_smooth(method=lm)+theme(aspect.ratio = 1)+labs(x = "Total gastado en dólares", y = "Propina en dólares",legend.title = "Fumador")+theme(legend.position = "bottom")+scale_colour_brewer(palette ="Set1")
 graf
 ```
+
+\m{Tiene que ser una sola línea en el geom_smooth lo cual require definir las variables en el aes de dicha capa.}
 
 2. Cambiar el color de la linea a negro.
 
@@ -112,3 +116,5 @@ graf2<-ggplot(data = propinas, aes(x = fct_rev(fct_infreq(dia)), fill = dia)) +
     geom_bar()+theme(aspect.ratio = 1)+labs(x = "Count", y = "Día")+coord_flip()
 graf2
 ```
+
+\m{Buen trabajo!}
