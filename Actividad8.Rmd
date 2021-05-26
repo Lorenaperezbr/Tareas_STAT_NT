@@ -12,10 +12,14 @@ output:
       # float: null
       babel: ["spanish"]
 ---
+<<<<<<< HEAD
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+=======
+\newcommand{\m}{\ \newline\textcolor{blue}{Comentario: }\textcolor{red}}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -29,14 +33,24 @@ Recordar que para que tengas la última version de tu repositorio en GitHub debe
 # Ejercicio 1
 Cargar la librería `tidyverse` y con los datos `mpg` usar las funciones que vimos de `dplyr` para  transformar los datos de la siguiente forma. 
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 library(tidyverse)
 ```
 
 1. Seleccionar el conjunto de autos del 2008 que tienen `hwy` mayor a 31.
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
 data<-as.data.frame(mpg)
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+# data<-as.data.frame(mpg)
+data <- mpg
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 filter(data, year == 2008 & hwy> 31)
 nrow(filter(data, year == 2008 & hwy> 31)) #Son 6 observaciones
 ```
@@ -44,13 +58,18 @@ nrow(filter(data, year == 2008 & hwy> 31)) #Son 6 observaciones
 
 2. Seleccionar el conjunto de autos que tienen `cty` igual a 9 ó hwy es mayor a 90. ¿Cuantos autos son? 
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 filter(data, cty == 9| hwy> 90)
 nrow(filter(data, cty == 9| hwy> 90)) #Son 5 observaciones
 ```
 
 3. Seleccioná la variable `displ` y `hwy`
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
 select(data, c("displ","hwy") )
 ```
@@ -58,18 +77,36 @@ select(data, c("displ","hwy") )
 4. Seleccioná desde la variable `trans` hasta la variable `hwy`.
 
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+select(data, c("displ","hwy") )
+```
+\m{También podes seleccionar sin concatener y sin usar character}
+
+4. Seleccioná desde la variable `trans` hasta la variable `hwy`.
+
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 select(data, trans:hwy )
 ```
 
 5. Produce un dataframe: marca, modelo, año, cantidad de cilindros y rendimiento en ciudad. Únicamente para los autos, toyota, camry. 
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 data2<-as.data.frame(select(filter(data,manufacturer=="toyota"|manufacturer=="camry"),c("manufacturer","model","year","cyl","cty")))
 ```
 
 6. Calcula el rendimiento promedio en ciudad para cada marca (`manufacturer`). ¿Cuál es el mejor rendimiento en ciudad? y el peor ?  
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 prom_rend<-data %>%
 group_by(manufacturer) %>%
 summarise(prom = mean(cty,na.rm=TRUE) )
@@ -79,8 +116,13 @@ La marca que tiene mayor rendimiento promedio es Honda, mientras que Lincoln es 
 
 7. Para cada marca: calcula el rendimiento promedio en ciudad, el error estandard de la media, y el rango
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
 stats<-data %>%
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+data %>%
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 group_by(manufacturer) %>%
 summarise(prom = mean(cty,na.rm=TRUE),ee<-sd(cty),rango<-max(cty)-min(cty) )
 
@@ -89,7 +131,11 @@ summarise(prom = mean(cty,na.rm=TRUE),ee<-sd(cty),rango<-max(cty)-min(cty) )
 
 8. Mejora en el rendimiento: calcular el rendimiento promedio para cada marca, distinguiendo antes y después de 2004
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 dataa<-filter(data, year< 2004)
 rend1<-dataa %>%
 group_by(manufacturer) %>%
@@ -99,14 +145,24 @@ rend2<-datab %>%
 group_by(manufacturer) %>%
 summarise(post2004 = mean(cty,na.rm=TRUE))
 rend<-merge(rend1,rend2)
+<<<<<<< HEAD
 
 ```
 
+=======
+rend
+```
+\m{Correcto resultado pero no la forma de realizarlo revisar la solución.}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 
 9. Calcular el rendimiento promedio en carretera (`hwy`), para 3 marcas seleccionadas aleatoriamente y ordena el resultado de menor a mayor
 
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
 data3<-filter(data,manufacturer==sample(unique(data$manufacturer),3))
 rendhwy<-data3 %>%
 group_by(manufacturer) %>%
@@ -122,7 +178,15 @@ Primero tenés que saber la conversión de galones a litros y de millas a kilóm
 
 `1 milla = 1.60934 km`
 
+<<<<<<< HEAD
 ```{r eval=FALSE, include=TRUE, echo = TRUE}
 data4<-mutate(data, newhwy = 235.21/hwy)
 ```
 
+=======
+```{r eval=TRUE, include=TRUE, echo = TRUE}
+data4<-mutate(data, newhwy = 235.21/hwy)
+```
+
+\m{Los tibbles ya son data.frames no es necesario convertirlos. A mejorar: Hay calculos intermedios que no son necesarios, el código debería estar identado para que sea más legible y no es necesario concatener al usar select o filter ni usar character (pero si se quiere se puede hacer no hay nada malo en ello)}
+>>>>>>> a7398672b8dcbbed3369b362d47d693b8a0bb30a
