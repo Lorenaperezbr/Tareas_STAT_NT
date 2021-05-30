@@ -6,8 +6,10 @@ output:
   pdf_document: default
   fig_caption: true
 ---
+\newcommand{\m}{\ \newline\textcolor{blue}{Comentario: }\textcolor{red}}
+
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, tidy.opts = list(width.cutoff = 50), tidy = TRUE, fig.pos = 'h', out.extra = '')
+knitr::opts_chunk$set(echo = TRUE, tidy.opts = list(width.cutoff = 50), tidy = TRUE, fig.pos = 'h', out.extra = '', message = FALSE, warning = FALSE)
 ```
 
 
@@ -78,6 +80,8 @@ labs(x = "Esperanza de vida al momento de nacer", y = "Año" )+geom_smooth(metho
 ```
 La figura 2 aún muestra las rectas de regresión dado que el argumento "+geom_smooth(method = "lm",se = FALSE)" sigue estando presente en el chunk de código. Las líneas se trazan a partir de los puntos, pero la capa que los incluye fue removida del código.
 
+\m{Correcto! En estos ejercicios me equívoque en una pregunta del foro respecto si los ejes están bien especificados. Matemáticamente esta bien, pero se analizar al revez (y el análisis que hiciste es correcto), es decir en el eje y se gráfica la esperanza de vida y en el eje x los años, básicamente porque sería la variable que queremos explicar.}
+
 3. El siguiente es un gráfico de dispersión entre `lifeExp` y `gdpPercap`  coloreado por la variable `continent`. Usando como elemento estético color (`aes()`) nosotros podemos distinguir los distintos continentes usando diferentes colores de similar manera usando forma (`shape`).
 
 
@@ -94,6 +98,8 @@ ggplot(data, aes(gdpPercap,lifeExp,color =continent)) +labs(x = "PBI per cápita
 A partir del gráfio se observa que continentes como Europa tienen una mayor esperanza de vida a mayor PBI per cápita, mientras que continentes como África tienen menor PBI per cápita, y en general, menor esperanza de vida. En el caso de América, podría plantearse un escenario similar al de Europa.
 En líneas generales, podría pensarse en una correlación positiva entre PBI per cápita y la esperanza de vida al momento de nacer; a mayor PBI p/c mayor esperanza de vida. Para Asia se observan algunas observaciones que no siguen esta línea (quizás datos atípicos), observaciones con un muy alto PBI p/c pero que aún así no tienen niveles altos de esperanza de vida. 
 
+\m{Excelente en usar la transparencia PERO se debería usar un facet y cuidado solamente con que en este gráfico están todos los países en todos los años, osea que hay una dimensión temporal que no se considera.}
+
 4. Hacer un gráfico de lineas que tenga en el eje `x` `year` y en el eje `y`  `gdpPercap` para cada continente en una misma ventana gráfica. En cada continente, el gráfico debe contener una linea para cada país a lo largo del tiempo (serie de tiempo de `gdpPercap`). Las etiquetas de los ejes deben ser claras y describir las variables involucradas. Incluir un `caption` en la Figura con algún comentario de interés que describa el gráfico.
 
 ```{r echo = TRUE, include = TRUE, fig.cap = "Figura 4: Evolución del PBI per cápita por continente, para cada país.", fig.align="center", fig.width=5,fig.height=5}
@@ -102,6 +108,8 @@ ggplot(data, aes(year, gdpPercap)) + geom_line(aes(colour = country)) +theme(leg
 ```
 
 La representación por países en colores no me parece la más adecuada, dado que es sumamente dificil identificar cuál se corresponde con cuál. Además de que para disintos continentes se usan los mismos colores, aún siendo países distintos. Lo cual puede llevar a interpretaciones erróneas.
+
+\m{No es necesario usar colores, bastaría usar transparencias. El comentario que haces es sumamente acertado, deberías haber sacado el color tal como comentaste. Faltó interpretar el gráfico.}
 
 5. Usando los datos `gapminder` seleccione una visualización que describa algún aspecto de los datos que no exploramos. Comente algo interesante que se puede aprender de su gráfico.
 
@@ -151,6 +159,8 @@ ggplot(data2, aes(x = drv, y = prop.table(stat(count)), fill = drv,label = scale
 
 ```
 
+\m{Excelente, ordenar las barras de forma descendente. }
+
 ## Ejercicio 3
 
 Los datos que vamos a utilizar en este ejercicio están disponibles en el catálogo de datos abiertos uruguay https://catalogodatos.gub.uy.
@@ -190,12 +200,13 @@ top5<-datos %>% filter(fuente!="TOTAL"&fuente!="S_C"&fuente!="I_E")%>%group_by(f
 Selecciones para dibujar solamente las 5 fuentes que a lo largo de los años tienen una emisión media mayor que el resto (respuesta de la pregunta 5).
 Las etiquetas de los ejes deben ser claras y describir las variables involucradas. Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
 
-```{r echo = TRUE, include = TRUE, fig.cap = "Figura 8: Evolución de la emisión de CO2 para las 5 fuentes con mayor promedio",fig.align="center", fig.width=5,fig.height=5}
-datos %>% filter(fuente%in%top5)%>%
+```{r echo = TRUE, include = TRUE, fig.cap = "Evolución de la emisión de CO2 para las 5 fuentes con mayor promedio",fig.align="center", fig.width=5,fig.height=5}
+datos %>% filter(fuente%in%top5$fuente)%>%
   ggplot(aes(x=AÑO, y=emision))+ 
 geom_point(aes(color=fuente))+geom_line(aes(color=fuente))+ theme(aspect.ratio = 1)+labs(x = "Año", y = "Emisión de CO2" )+scale_color_brewer(palette = "Pastel1",labels=c("Búnkers internacionales","Centrales eléctricas de servicio público","Industrial","Quema de biomasa","Transporte"))
-
 ```
+
+\m{Bien en el uso de top5, te faltó seleccionar la fuente para filtrar, por eso quedaba el gráfico vacío, y comentar la visualización.}
 
 6. Relplique el siguiente gráfico usando `ggplot2`.
  Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
@@ -302,13 +313,18 @@ Se observa que las personas de sexo masculino tienen, en promedio, mayor número
 masinasistencias<-data%>%group_by(nombre_departamento)%>%summarise(media=mean(inasistencias,na.rm=TRUE) )%>% arrange(media)%>%tail(5)%>%ggplot( aes(x = nombre_departamento, y = media, fill= nombre_departamento))+geom_bar(stat="identity")+geom_text(aes(label=round(media,2)), position=position_dodge(width=0.4), vjust=-0.25)+scale_y_continuous(limit = c(0,10))+
   labs(title="Cantidad promedio de inasistencias en el primer semestre de 2016 por lugar de residencia",x = "Departamento", y = "Cantidad promedio de inasistencias")+theme(legend.position = "none",panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.border = element_blank(), panel.background = element_blank(), axis.title.x = element_text(size=10,hjust = 0.5),axis.title.y = element_text(size=10,hjust=0.5),legend.text = element_text(size=10),axis.text = element_text(size=8))+scale_fill_brewer(palette = "Pastel1")
+masinasistencias
 ```
-La figura 11 muestra que Montevido es el departamento con mayor cantidad promedio de inasistencias, seguido por Río Negro y Salto. A partir de esto, cabe preguntarse si incide el hecho de que el estudiante resida en una zona metropolitana en la cantidad de inasistencias? De ser así uno tendería a pensar que Canelones podría estar entre los departamentos con más cantidad de inasistencias promedio, sin embargo se encuentra más abajo en la lista.
+La figura 11 muestra que Montevideo es el departamento con mayor cantidad promedio de inasistencias, seguido por Río Negro y Salto. A partir de esto, cabe preguntarse si incide el hecho de que el estudiante resida en una zona metropolitana en la cantidad de inasistencias? De ser así uno tendería a pensar que Canelones podría estar entre los departamentos con más cantidad de inasistencias promedio, sin embargo se encuentra más abajo en la lista.
 
-```{r echo = TRUE, include = TRUE,fig.cap = "Figura 12: Cantidad promedio de inasistencias por contexto sociocultural del liceo en 2016."}
+\m{Perfecto análisis (nuevamente), ordenar las barras de forma descendente solamente.}
+
+```{r echo = TRUE, include = TRUE,fig.cap = "Cantidad promedio de inasistencias por contexto sociocultural del liceo en 2016."}
 inasistencias_cl<-data %>% group_by(cl)%>%summarise(media=mean(inasistencias,na.rm=TRUE) )%>% arrange(media)
 ggplot(inasistencias_cl,aes(x = cl, y = media, fill=as.factor(cl))) +geom_bar(stat="identity")+geom_text(aes(label=round(media,2)), position=position_dodge(width=0.4), vjust=-0.25)+scale_y_continuous(limit = c(0,10))+
   labs(title="Cantidad promedio de inasistencias en el primer semestre de 2016 por nivel sociocultural",x = "Cluster - contexto sociocultural del liceo en 2016", y = "Cantidad promedio de inasistencias")+theme(legend.position = "none",panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.title.x = element_text(size=10,hjust = 0.5),axis.title.y = element_text(size=10,hjust=0.5),legend.text = element_text(size=6),axis.text = element_text(size=6))+scale_fill_brewer(palette = "Set2")
 ```
 No me parece muy correcto interpretar el gráfico ya que no hay una descripción de la variable cl que permita identificar cada uno de los contextos socioculturales de los liceos. Sin embargo, podríamos preguntarnos si existe relación alguna entre la cantidad de inasistencias de los estudiantes y el nivel del liceo. Por ejemplo, varios estudios y encuestas indican que el nivel de deserción de los estudiantes de secundaria se exacerba en contextos más carenciados, por lo tanto podría ocurrir lo mismo con el nivel de inasistencia.
+
+\m{Nada que agregar a las preguntas, visualizaciones y comentarios de las mismas. Excelente planteo descriptivo de los datos, posibles hipótesis y comentarios, en especial la última sección que esta muy bien trabajada. Algunos leves detalles en algunos ejercicios, pero en general excelente. Ah, y de preferencia ordenar el repositorio pero eso es un extra.}
