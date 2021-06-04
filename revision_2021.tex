@@ -1,0 +1,503 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Revisión 2021},
+  pdfauthor={Lorena Pérez 4926489-9},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Revisión 2021}
+\author{Lorena Pérez 4926489-9}
+\date{4/6/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{explicativo-sobre-la-prueba}{%
+\subsection{Explicativo sobre la
+prueba}\label{explicativo-sobre-la-prueba}}
+
+Por favor completá tu nombre y CI en el YAML del archivo donde dice
+\texttt{author:\ "NOMBRE\ Y\ CI:\ "}. El examen es individual y
+cualquier apartamiento de esto invalidará la prueba. Puede consultar el
+libro del curso durante la revisión \url{http://r4ds.had.co.nz} así como
+el libro de ggplot2 pero no consultar otras fuentes de información.
+
+Los archivos y la información necesaria para desarrollar la prueba se
+encuentran en Eva en la pestaña Prueba.
+
+La revisión debe quedar en tu repositorio PRIVADO de GitHub en una
+carpeta que se llame Prueba con el resto de las actividades y tareas del
+curso. Parte de los puntos de la prueba consisten en que la misma sea
+reproducible y tu repositorio de GitHub esté bien organizado.\\
+Además una vez finalizada la prueba debes mandarme el archivo pdf y Rmd
+a \href{mailto:natalia@iesta.edu.uy}{\nolinkurl{natalia@iesta.edu.uy}} y
+por favor recordame tu usuario de GitHub para que sea más sencillo
+encontrar tu repositorio, asegurate que haya aceptado la invitación a tu
+repositorio y de no ser así enviame nuevamente la invitación a
+natydasilva.
+
+Recordar que para que tengas la última versión de tu repositorio debes
+hacer \texttt{pull} a tu repositorio para no generar inconsistencias y
+antes de terminar subir tus cambios con \texttt{commit} y \texttt{push}.
+
+\textbf{La Revisión vale 130 puntos donde 15 de los puntos son de
+reproducibilidad de la misma, organización del repositorio en GitHub,
+órden y organización en el código y respuestas.}
+
+\hypertarget{ejercicio-1-90-puntos}{%
+\section{Ejercicio 1 (90 puntos)}\label{ejercicio-1-90-puntos}}
+
+\hypertarget{explicativo-sobre-los-datos}{%
+\subsection{Explicativo sobre los
+datos}\label{explicativo-sobre-los-datos}}
+
+Los datos que vamos a utilizar en este ejercicio son una muestra de
+datos a nivel nacional sobre abandono escolar en los años 2016 que ya
+utilizamos en la Tarea 2.
+
+\begin{table}[hbpt]
+    \centering
+    \caption{Variables en \label{tab:VAR} \textbf{muestra.csv}}
+    \vspace{0.5cm}
+    \begin{tabular}{|l|l|}
+        \hline
+    \textbf{Variable} &  \textbf{Descripción}  \\
+        \hline
+        documento & Cédula de Identidad del alumno  \\
+        \hline
+        nro\_doc\_centro\_educ & Liceo que concurre el alumno en 2016  \\
+        \hline
+        nombre\_departamento & Nombre del Departamento del centro educativo \\
+        \hline
+        grupo\_desc & Grupo del alumno en 2016 \\
+        \hline
+        coberturaT & Cobertura en el primer semestre de 2016  \\
+        \hline
+        Centro\_Grupo & Liceo y grupo del alumno en 2016 \\
+        \hline
+        cl    & Cluster - contexto sociocultural del liceo en 1016  \\
+        \hline
+        Grado\_2016\_UE & Grado del alumno en el 2016 según UE  \\
+        \hline
+        Grado2013 & Grado del alumno en 2013 según CRM  \\
+        \hline
+        Grado2014 & Grado del alumno en 2014 según CRM  \\
+        \hline
+        Grado2015 & Grado del alumno en 2015 según CRM \\
+        \hline
+        Grado 2016 & Grado del alumno en 2016 según CRM \\
+        \hline
+        Sexo  & Sexo del alumno \\
+        \hline
+        Fecha.nacimiento & Fecha de nacimiento del alumno \\
+        \hline
+        Grupo\_UE\_2017 & Grupo del alumno en 2017 \\
+        \hline
+        inasistencias & cantidad de inasistencias en el primer semestre de 2016\\
+        \hline
+        asistencias & cantidad de asistencias en el primer semestre de 2016  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+En el Cuadro \ref{tab:VAR} se presentan las variables en el conjunto de
+datos \textbf{muestra.csv}.
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Dentro de tu proyecto de RStudio creá un subdirectorio llamado Datos y
+  copiá el archivo muestra.csv. Lee los datos usando alguna función de
+  la librería \texttt{readr} y \texttt{here}. \textbf{(5 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(here)}
+\NormalTok{datos<-}\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"d:/Documents/Rmarkdown/Tareas_STAT_NT/Datos/Prueba"}\NormalTok{, }\StringTok{"muestra.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Utilizando funciones de \texttt{dplyr} transformá la variable Abandono
+  para que sea un factor con dos niveles donde el 0 se recodifique a No
+  y el 1 a Si. Mostrame el resultado resumido en una tabla con la
+  cantidad de observaciones para cada categoría usando \texttt{xtable},
+  recordá incluir en el chunk
+  \texttt{results=\textquotesingle{}asis\textquotesingle{}}. \textbf{(10
+  puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(xtable)}
+\NormalTok{datos<-datos }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Abandono=}\KeywordTok{recode}\NormalTok{(Abandono,}\StringTok{`}\DataTypeTok{0}\StringTok{`}\NormalTok{=}\StringTok{"No"}\NormalTok{,}\StringTok{`}\DataTypeTok{1}\StringTok{`}\NormalTok{=}\StringTok{"Sí"}\NormalTok{))}
+\NormalTok{prop<-datos }\OperatorTok{%>%}\KeywordTok{group_by}\NormalTok{(Abandono)}\OperatorTok{%>%}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n=}\KeywordTok{n}\NormalTok{())}\OperatorTok{%>%}\KeywordTok{xtable}\NormalTok{()}
+\NormalTok{prop}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Usando funciones de \texttt{dplyr} respondé ¿Cuál es el porcentaje de
+  abandono en Montevideo? \textbf{(10 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop2<-datos }\OperatorTok{%>%}\KeywordTok{filter}\NormalTok{(nombre_departamento}\OperatorTok{==}\StringTok{"Montevideo"}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{group_by}\NormalTok{(Abandono)}\OperatorTok{%>%}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{proporcion=}\NormalTok{(}\KeywordTok{n}\NormalTok{()}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(datos))}\OperatorTok{*}\DecValTok{100}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{xtable}\NormalTok{()}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"El porcentaje de abandono en Montevideo es "}\NormalTok{,}\KeywordTok{round}\NormalTok{(prop2[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{"%"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Reproducí el siguiente gráfico y en vez de ``Gráfico a replicar''
+  (\texttt{caption}) debes agregar un título que describa la figura y
+  algún comentario interesante de lo que observás en la
+  misma.\textbf{(10 puntos) }
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop_depto<-datos }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(nombre_departamento,Abandono)}\OperatorTok{%>%}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Conteo=}\KeywordTok{n}\NormalTok{())}\OperatorTok{%>%}\KeywordTok{mutate}\NormalTok{(Proporción=}\KeywordTok{round}\NormalTok{(Conteo}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(Conteo),}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\DecValTok{100}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{filter}\NormalTok{(Abandono}\OperatorTok{==}\StringTok{"Sí"}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{xtable}\NormalTok{()}
+\NormalTok{prop_depto}\OperatorTok{%>%}\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Proporción,}\DataTypeTok{y=}\KeywordTok{reorder}\NormalTok{(nombre_departamento, Proporción)))}\OperatorTok{+}\KeywordTok{geom_point}\NormalTok{()}\OperatorTok{+}\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Proporción", y = "}\NormalTok{Departamentos}\StringTok{")}
+\end{Highlighting}
+\end{Shaded}
+
+Se observa que el porcentaje de abandono en Flores es nulo, mientras que
+Río Negro y San José son los únicos dos departamentos con un porcentaje
+de abandono mayor a 10.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Reproducí el siguiente gráfico realizado solo con los estudiantes que
+  abandonaron y en vez de ``Gráfico a replicar'' (\texttt{caption})
+  debes agregar un título que describa la figura y algún comentario
+  interesante de lo que observás en la misma. La paleta usada es Dark2.
+  \textbf{(10 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos<-}\KeywordTok{rename}\NormalTok{(datos,}\StringTok{"Género"}\NormalTok{=}\StringTok{"Sexo"}\NormalTok{)}
+\NormalTok{prop_depto_sex<-datos }\OperatorTok{%>%}\KeywordTok{filter}\NormalTok{(Abandono}\OperatorTok{==}\StringTok{"Sí"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(nombre_departamento,Género)}\OperatorTok{%>%}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Conteo=}\KeywordTok{n}\NormalTok{())}\OperatorTok{%>%}\KeywordTok{mutate}\NormalTok{(Proporción=}\KeywordTok{round}\NormalTok{(Conteo}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(Conteo),}\DecValTok{3}\NormalTok{))}\OperatorTok{%>%}\KeywordTok{xtable}\NormalTok{()}
+
+\NormalTok{prop_depto_sex}\OperatorTok{%>%}\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Proporción,}\DataTypeTok{fill =}\NormalTok{ Género,}\DataTypeTok{y=}\KeywordTok{reorder}\NormalTok{(nombre_departamento, }\OperatorTok{-}\NormalTok{Proporción)))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{position=}\StringTok{"stack"}\NormalTok{,}\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{)}\OperatorTok{+}\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Dark2"}\NormalTok{)}\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Proporción", y = "}\NormalTok{Departamentos}\StringTok{")+theme(legend.position = "}\NormalTok{bottom}\StringTok{")}
+\end{Highlighting}
+\end{Shaded}
+
+A excepción de Canelones, San José, Soriano y Rocha, más del 50\% de
+abandono se corresponde al género Masculino.
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Reproducí el siguiente gráfico y en vez de ``Gráfico a replicar''
+  (\texttt{caption}) debes agregar un título que describa la figura y
+  algún comentario interesante de lo que observás en la misma. La paleta
+  usada es Dark2.\textbf{(15 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop_clus<-datos }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(nombre_departamento,Abandono)}\OperatorTok{%>%}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Conteo=}\KeywordTok{n}\NormalTok{())}\OperatorTok{%>%}\KeywordTok{mutate}\NormalTok{(Proporción=}\KeywordTok{round}\NormalTok{(Conteo}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(Conteo),}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\DecValTok{100}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{filter}\NormalTok{(Abandono}\OperatorTok{==}\StringTok{"Sí"}\NormalTok{)}\OperatorTok{%>%}\KeywordTok{xtable}\NormalTok{()}
+
+\NormalTok{datos}\OperatorTok{%>%}\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ cl,}\DataTypeTok{y=}\KeywordTok{reorder}\NormalTok{(nombre_departamento, Proporción)))}\OperatorTok{+}\KeywordTok{geom_point}\NormalTok{()}\OperatorTok{+}\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Proporción", y = "}\NormalTok{Departamentos}\StringTok{")}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Recodificá la variable \texttt{grupo\_desc} que tiene 17 niveles para
+  que de 1ro.G.1 a 1ro.G5 sea A de 1ro.G.6 a 1ro G.11 sea B y los
+  restantes C. Mostrá el resultado seleccionando la variable
+  recodificada y las primeras 6 filas. \textbf{(5 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos<-datos }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{grupo_desc=}\KeywordTok{ifelse}\NormalTok{(datos}\OperatorTok{$}\NormalTok{grupo_desc}\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1ro. G. 1"}\NormalTok{,}\StringTok{"1ro. G. 2"}\NormalTok{,}\StringTok{"1ro. G. 3"}\NormalTok{,}\StringTok{"1ro. G. 4"}\NormalTok{,}\StringTok{"1ro. G. 5"}\NormalTok{),}\StringTok{"A"}\NormalTok{,}\KeywordTok{ifelse}\NormalTok{(datos}\OperatorTok{$}\NormalTok{grupo_desc}\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1ro. G. 6"}\NormalTok{,}\StringTok{"1ro. G. 7"}\NormalTok{,}\StringTok{"1ro. G. 8"}\NormalTok{,}\StringTok{"1ro. G. 9"}\NormalTok{,}\StringTok{"1ro. G. 10"}\NormalTok{,}\StringTok{"1ro. G. 11"}\NormalTok{),}\StringTok{"B"}\NormalTok{,}\StringTok{"C"}\NormalTok{)))}
+\KeywordTok{head}\NormalTok{(datos}\OperatorTok{$}\NormalTok{grupo_desc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Separá la variable Fecha.nacimiento en tres nuevas variables año, mes
+  y dia, para ello usá la función \texttt{separate} de forma que sean
+  numéricas. Mostrá el resultado seleccionando las variables documento,
+  año, dia y mes con alguna función de \texttt{dplyr} y las primeras 6
+  filas.\textbf{(5 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(datos,añ}\DataTypeTok{o=}\KeywordTok{separate}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Convertí la variable Fecha.nacimiento como objeto de tipo Date usando
+  \texttt{as.Date} de R base y comprobá que la nueva variable
+  Fecha.nacimiento es del tipo correcto. \textbf{(5 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\OperatorTok{$}\StringTok{`}\DataTypeTok{Fecha nacimiento}\StringTok{`}\NormalTok{<-}\KeywordTok{as.Date}\NormalTok{(datos}\OperatorTok{$}\StringTok{`}\DataTypeTok{Fecha nacimiento}\StringTok{`}\NormalTok{)}
+\KeywordTok{class}\NormalTok{(datos}\OperatorTok{$}\StringTok{`}\DataTypeTok{Fecha nacimiento}\StringTok{`}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  Usando la variable Fecha.nacimiento transformada, se considera que el
+  alumno tiene extra-edad leve cuando nace antes del 30 de abril de
+  2003. Es decir, tiene un a\textasciitilde no m'as de la edad normativa
+  para dicha generaci'on. En base a esta definición creá una nueva
+  variable (nombrala extra) que valga 1 si el alumno tiene extra edad
+  leve y 0 si no la tiene. Muestra solo el resultado de las primeras 6
+  filas. Pista para que la condición tome en cuenta el formato fecha
+  podrías usar
+  \texttt{as.Date(\textquotesingle{}2003-04-30\textquotesingle{})}.
+  \textbf{(10 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\OperatorTok{$}\NormalTok{extra<-}\KeywordTok{ifelse}\NormalTok{(datos}\OperatorTok{$}\StringTok{`}\DataTypeTok{Fecha nacimiento}\StringTok{`}\OperatorTok{>}\KeywordTok{as.Date}\NormalTok{(}\StringTok{'2003-04-30'}\NormalTok{),}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(datos}\OperatorTok{$}\NormalTok{extra,}\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Trabajá con un subconjunto de datos que tenga documento, Grado2013,
+  Grado2014,Grado2015, Grado2016 y llamale reducida. Con los datos
+  reducidos restructuralos para que queden de la siguiente forma usando
+  alguna de las funciones del paquete \texttt{tidyr} que vimos en la
+  última clase.\textbf{(5 puntos)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reducida<-datos}\OperatorTok{%>%}\KeywordTok{select}\NormalTok{(documento, Grado2013, Grado2014,Grado2015,}
+\NormalTok{Grado2016 )}
+\CommentTok{#reducida<-pivot_longer(reducida,names_to = "Grado",values_to = "Nivel")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A tibble}\OperatorTok{:}\StringTok{ }\DecValTok{16}\NormalTok{,}\DecValTok{092}\NormalTok{ x }\DecValTok{3}
+\NormalTok{   documento  Grado   Nivel}
+       \OperatorTok{<}\NormalTok{int}\OperatorTok{>}\StringTok{  }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}\StringTok{   }\ErrorTok{<}\NormalTok{chr}\OperatorTok{>}
+\StringTok{ }\DecValTok{1}  \DecValTok{52401872}\NormalTok{ Grado2013 4º   }
+ \DecValTok{2}  \DecValTok{52401872}\NormalTok{ Grado2014 5º   }
+ \DecValTok{3}  \DecValTok{52401872}\NormalTok{ Grado2015 6º   }
+ \DecValTok{4}  \DecValTok{52401872}\NormalTok{ Grado2016 }\DecValTok{1}    
+ \DecValTok{5}  \DecValTok{54975382}\NormalTok{ Grado2013 5º   }
+ \DecValTok{6}  \DecValTok{54975382}\NormalTok{ Grado2014 6º   }
+ \DecValTok{7}  \DecValTok{54975382}\NormalTok{ Grado2015 1u   }
+ \DecValTok{8}  \DecValTok{54975382}\NormalTok{ Grado2016 }\DecValTok{1}    
+ \DecValTok{9}  \DecValTok{54944549}\NormalTok{ Grado2013 4º   }
+\DecValTok{10}  \DecValTok{54944549}\NormalTok{ Grado2014 5º   }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ejercicio-2-25-puntos}{%
+\section{Ejercicio 2 (25 puntos)}\label{ejercicio-2-25-puntos}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  En clase vimos distintas visualizaciones para variables categóricas y
+  mencionamos como posibles el gráfico de barras y el gráficos de torta.
+\end{enumerate}
+
+¿Cuál es el argumento teórico para decir que es siempre preferible un
+gráfico de barras a uno de tortas para ver la distribución de una
+variable categórica? \textbf{(5 puntos)} Porque al tener muchos niveles,
+la visualización se pierde un poco en el pie chart, en cambio usando un
+bar chart, aún teniendo muchos niveles, se podrá comparar visualmente
+uno con otro. Esto sucede incluso cuando los valores para cada nivel son
+parecidos similares, se pierde la visualización con el pie chart.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ¿Porqué es necesario utilizar \texttt{aspect.ratio\ =\ 1} en un
+  diagrama de dispersión? \textbf{(5 puntos)}
+\end{enumerate}
+
+Porque nos garantiza que las unidades en ambos ejes, x y y, sean de
+igual longitud. Permite una mejor visualización de los datos, dado que
+no ``achata'' o ``estira'' el panel del gráfico.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Generá una función \texttt{compra} que tenga como argumentos un vector
+  numérico \texttt{cprod} cantidad de productos a comprar de cada tipo y
+  un vector numérico \texttt{cdisp} con la cantidad disponible de dichos
+  productos (ambos vectores del mismo largo) que devuelva 1 si se pude
+  hacer la compra y 0 en caso contrario. La compra se puede realizar
+  siempre que haya stock suficiente para cada producto, es decir que la
+  cantidad disponible sea igual o mayor a la cantidad comprada. A su vez
+  si alguno de los argumentos no es un vector numérico la función no
+  debe ser evaluada y debe imprimir el mensaje ``Argumento no
+  numérico''. \textbf{(15 puntos)}
+\end{enumerate}
+
+Comprobá que el resultado de la función sea
+
+\texttt{compra(c(1,4,2),\ 1:3)\ =\ 0}
+
+\texttt{compra(c("A","B"),\ 1:3)=\ Argumento\ no\ numérico}
+
+\end{document}
