@@ -136,7 +136,7 @@ prop_depto_sex%>%ggplot(aes(x = Proporción,fill = Género,y=reorder(nombre_depa
 
 A excepción de Canelones, San José, Soriano y Rocha, más del 50% de abandono se corresponde al género Masculino. 
 
-\textbf{\textcolor{violet}{Falta ordenar,incluir el nombre del gráfico: "Gráfico de barras apilaadas al 100\\%..." Ver sol. (8 Puntos)}}
+\textbf{\textcolor{violet}{Falta ordenar,incluir el nombre del gráfico: "Gráfico de barras apilaadas al 100\%..." Ver sol. (8 Puntos)}}
 
 \newpage
 
