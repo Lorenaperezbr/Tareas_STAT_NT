@@ -85,12 +85,13 @@ En el Cuadro \ref{tab:VAR} se presentan las variables en el conjunto de datos \t
 ```{r echo = TRUE, include = TRUE}
 library(readr)
 library(here)
-datos<-read_csv(here("d:/Documents/Rmarkdown/Tareas_STAT_NT/Datos/Prueba", "muestra.csv"))
+datos<-read_csv(here("Datos/Prueba", "muestra.csv"))
 ```
+\textbf{\textcolor{violet}{No es reproducible, estás leyendo los datos con el directorio que funciona solo en tu compu. No estás usando correctamente la función here}}
 
 2. Utilizando funciones de `dplyr` transformá la variable Abandono para que sea un factor con dos niveles donde el 0 se recodifique a No y el 1 a Si. Mostrame el resultado resumido en una tabla con la cantidad de observaciones para cada categoría usando `xtable`, recordá incluir en el chunk `results='asis'`. **(10 puntos)**
 
-```{r echo = TRUE,eval=FALSE, include = TRUE,results='asis'}
+```{r echo = TRUE, include = TRUE,results='asis'}
 library(dplyr)
 library(tidyverse)
 library(xtable)
@@ -98,19 +99,21 @@ datos<-datos %>% mutate(Abandono=recode(Abandono,`0`="No",`1`="Sí"))
 prop<-datos %>%group_by(Abandono)%>%summarise(n=n())%>%xtable()
 prop
 ```
-
+\textbf{\textcolor{violet}{Saqué el eval=FALSE para que salga la tabla (10 Puntos)}}
 
 3. Usando funciones de `dplyr` respondé ¿Cuál es el porcentaje de abandono en Montevideo? **(10 puntos)**
 
-```{r echo = TRUE,eval=FALSE, include = TRUE,results='asis'}
+```{r echo = TRUE, include = TRUE,results='asis'}
 prop2<-datos %>%filter(nombre_departamento=="Montevideo")%>%group_by(Abandono)%>%summarise(proporcion=(n()/nrow(datos))*100)%>%xtable()
 print(paste0("El porcentaje de abandono en Montevideo es ",round(prop2[2,2],2),"%"))
 ```
 
+\textbf{\textcolor{violet}{El denominador en el cálculo del porcentaje es incorrecto, pusiste el total y no las observaciones de Montevideo. (5 Puntos)}}
+
 4. Reproducí el siguiente gráfico y en vez de "Gráfico a replicar" (`caption`) debes agregar un título que describa la figura y algún comentario interesante de lo que observás en la misma.**(10 puntos) **
 
 
-```{r echo = TRUE, eval=FALSE,include = TRUE,fig.cap = "Porcentaje de abandono por departamento",fig.align="center", fig.width=5,fig.height=5}
+```{r echo = TRUE,include = TRUE,fig.cap = "Porcentaje de abandono por departamento",fig.align="center", fig.width=5,fig.height=5}
 prop_depto<-datos %>%
   group_by(nombre_departamento,Abandono)%>%summarise(Conteo=n())%>%mutate(Proporción=round(Conteo/sum(Conteo),3)*100)%>%filter(Abandono=="Sí")%>%xtable()
 prop_depto%>%ggplot(aes(x = Proporción,y=reorder(nombre_departamento, Proporción)))+geom_point()+theme(aspect.ratio = 1)+labs(x = "Proporción", y = "Departamentos")
@@ -118,9 +121,11 @@ prop_depto%>%ggplot(aes(x = Proporción,y=reorder(nombre_departamento, Proporci�
 
 Se observa que el porcentaje de abandono en Flores es nulo, mientras que Río Negro y San José son los únicos dos departamentos con un porcentaje de abandono mayor a 10.
 
+\fbox{\textbf{\textcolor{violet}{El eje x es Porcentaje de abandono, no proporción (9 Puntos)}}}
+
 5.  Reproducí el siguiente gráfico realizado solo con los estudiantes que abandonaron y en vez de "Gráfico a replicar" (`caption`) debes agregar un título que describa la figura y algún comentario interesante de lo que observás en la misma. La paleta usada es Dark2. **(10 puntos)**
 
-```{r echo = TRUE, eval=FALSE,include = TRUE,fig.cap = "Proporción de abandono por departamento y por sexo",fig.align="center", fig.width=5,fig.height=5}
+```{r echo = TRUE, include = TRUE,fig.cap = "Proporción de abandono por departamento y por sexo",fig.align="center", fig.width=5,fig.height=5}
 datos<-rename(datos,"Género"="Sexo")
 prop_depto_sex<-datos %>%filter(Abandono=="Sí") %>%
   group_by(nombre_departamento,Género)%>%summarise(Conteo=n())%>%mutate(Proporción=round(Conteo/sum(Conteo),3))%>%xtable()
@@ -130,6 +135,8 @@ prop_depto_sex%>%ggplot(aes(x = Proporción,fill = Género,y=reorder(nombre_depa
 ```
 
 A excepción de Canelones, San José, Soriano y Rocha, más del 50% de abandono se corresponde al género Masculino. 
+
+\textbf{\textcolor{violet}{Falta ordenar,incluir el nombre del gráfico: "Gráfico de barras apilaadas al 100\%..." Ver sol. (8 Puntos)}}
 
 \newpage
 
@@ -143,6 +150,7 @@ prop_clus<-datos %>%
 datos%>%ggplot(aes(x = cl,y=reorder(nombre_departamento, Proporción)))+geom_point()+theme(aspect.ratio = 1)+labs(x = "Proporción", y = "Departamentos")
 ```
 
+\fbox{\textbf{\textcolor{violet}{El eje x es Porcentaje de abandono,no proporción (3 Puntos)}}}
 
 \newpage
 
@@ -152,6 +160,7 @@ datos%>%ggplot(aes(x = cl,y=reorder(nombre_departamento, Proporción)))+geom_poi
 datos<-datos %>% mutate(grupo_desc=ifelse(datos$grupo_desc%in% c("1ro. G. 1","1ro. G. 2","1ro. G. 3","1ro. G. 4","1ro. G. 5"),"A",ifelse(datos$grupo_desc%in% c("1ro. G. 6","1ro. G. 7","1ro. G. 8","1ro. G. 9","1ro. G. 10","1ro. G. 11"),"B","C")))
 head(datos$grupo_desc)
 ```
+\fbox{\textbf{\textcolor{violet}{ (5 Puntos)}}}
 
 8. Separá la variable Fecha.nacimiento en tres nuevas variables año, mes y dia, para ello usá la función `separate` de forma que sean numéricas.
 Mostrá el resultado seleccionando las variables documento, año, dia y mes con alguna función de `dplyr` y las primeras 6 filas.**(5 puntos)** 
@@ -160,6 +169,7 @@ Mostrá el resultado seleccionando las variables documento, año, dia y mes con 
 datos %>% mutate(datos,año=separate())
 
 ```
+\fbox{\textbf{\textcolor{violet}{ Ver sol.}}}
 
 9. Convertí la variable Fecha.nacimiento como objeto de tipo Date usando  `as.Date` de R base y comprobá que la nueva variable Fecha.nacimiento es del tipo correcto. **(5 puntos)**
 
@@ -167,7 +177,7 @@ datos %>% mutate(datos,año=separate())
 datos$`Fecha nacimiento`<-as.Date(datos$`Fecha nacimiento`)
 class(datos$`Fecha nacimiento`)
 ```
-
+\fbox{\textbf{\textcolor{violet}{ (5 Puntos)}}}
 
 10. Usando la variable Fecha.nacimiento transformada, se considera que el alumno tiene extra-edad leve cuando nace antes del 30 de abril de 2003. Es decir, tiene un a\~no m\'as de la edad normativa para dicha generaci\'on. En base a esta definición creá una nueva variable (nombrala extra) que valga 1 si el alumno tiene extra edad leve y 0 si no la tiene. Muestra solo el resultado de las primeras 6 filas. Pista para que la condición tome en cuenta el formato fecha podrías usar `as.Date('2003-04-30')`. **(10 puntos)**
 
@@ -175,6 +185,8 @@ class(datos$`Fecha nacimiento`)
 datos$extra<-ifelse(datos$`Fecha nacimiento`>as.Date('2003-04-30'),1,0)
 head(datos$extra,6)
 ```
+
+\fbox{\textbf{\textcolor{violet}{Te quedó la condición alrevez  (9 Puntos)}}}
 
 11. Trabajá con un subconjunto de datos que tenga documento, Grado2013, Grado2014,Grado2015, Grado2016 y llamale reducida.
 Con los datos reducidos restructuralos para que queden de la siguiente forma usando alguna de las funciones del paquete `tidyr` que vimos en la última clase.**(5 puntos)**
@@ -185,6 +197,7 @@ Grado2016 )
 #reducida<-pivot_longer(reducida,names_to = "Grado",values_to = "Nivel")
 ```
 
+\fbox{\textbf{\textcolor{violet}{Te faltó el argumento cols  (3 Puntos)}}}
 
 ```{r, eval=FALSE}
 A tibble: 16,092 x 3
@@ -210,9 +223,12 @@ A tibble: 16,092 x 3
 ¿Cuál es el argumento teórico para decir que es siempre preferible un gráfico de barras a uno de tortas para ver la distribución de una variable categórica? **(5 puntos)**
 Porque al tener muchos niveles, la visualización se pierde un poco en el pie chart, en cambio usando un bar chart, aún teniendo muchos niveles, se podrá comparar visualmente uno con otro. Esto sucede incluso cuando los valores para cada nivel son parecidos similares, se pierde la visualización con el pie chart.
 
+\fbox{\textbf{\textcolor{violet}{Incompleto, ver sol (3 Puntos)}}}
+
 2. ¿Porqué es necesario utilizar `aspect.ratio = 1` en un diagrama de dispersión? **(5 puntos)**
 
 Porque nos garantiza que las unidades en ambos ejes, x y y, sean de igual longitud. Permite una mejor visualización de los datos, dado que no "achata" o "estira" el panel del gráfico.
+\fbox{\textbf{\textcolor{violet}{(5 Puntos)}}}
 
 3. Generá una función  `compra` que tenga como argumentos un vector numérico `cprod` cantidad de productos a comprar de cada tipo y un vector numérico `cdisp` con la cantidad disponible de dichos productos (ambos vectores del mismo largo) que devuelva 1 si se pude hacer la compra y 0 en caso contrario. La compra se puede realizar siempre que haya stock suficiente para cada producto, es decir que la cantidad disponible sea igual o mayor a la cantidad comprada. A su vez si alguno de los argumentos no es un vector numérico la función no debe ser evaluada y debe imprimir el mensaje "Argumento no numérico". **(15 puntos)** 
 
@@ -223,5 +239,6 @@ Comprobá que el resultado de la función sea
 `compra(c("A","B"), 1:3)= Argumento no numérico`
 
 
+\fbox{\textbf{\textcolor{violet}{Ver sol}}}
 
-
+\textbf{\textcolor{violet}{Tu prueba no fue reproducible porque pusiste un directorio absoluto, tu repositorio estaba ordenado hasta la prueba, algunas partes de tu código se puede restructurar para que sea más sencilla su lectura (11 Puntos). TOTAL DE PUNTOS 76/130}}
