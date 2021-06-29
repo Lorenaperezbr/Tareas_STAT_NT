@@ -49,9 +49,9 @@ server <-
                 })
         
         grafico <- reactive(
-            if (input$dist=="Gamma" | input$dist=="Normal"){graf<-data.frame(x=base()) %>% ggplot(aes(x)) + geom_histogram(bins=renderText(input$bins))
+            if (input$dist=="Gamma" | input$dist=="Normal"){graf<-data.frame(x=base()) %>% ggplot(aes(x)) + geom_histogram(bins=input$bins)
             print(graf)} else {
-                graf<-base() %>% ggplot(aes(x=value)) + geom_histogram(bins=renderText(input$bins)) + facet_wrap(tipo)
+                graf<-base() %>% ggplot(aes(x=value)) + geom_histogram(bins=input$bins) + facet_wrap(vars(tipo))
                 print(graf)})
         
         
