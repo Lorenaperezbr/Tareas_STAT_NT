@@ -63,7 +63,11 @@ server <- function(input, output){
 
 shinyApp(ui, server)
   
+# No funciona la tabla correctamente ni la elección de decimales.
+# Los gráficos deberían cambiar sin necesidad de apretar mostrar.
+# Revisar solución para ver como usar los observe
 
+# Puntaje 8/108
 
 
 

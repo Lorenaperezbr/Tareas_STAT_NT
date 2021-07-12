@@ -50,9 +50,9 @@ server <-
         
         grafico <- reactive(
             if (input$dist=="Gamma" | input$dist=="Normal"){graf<-data.frame(x=base()) %>% ggplot(aes(x)) + geom_histogram(bins=input$bins)
-            print(graf)} else {
+            graf} else {
                 graf<-base() %>% ggplot(aes(x=value)) + geom_histogram(bins=input$bins) + facet_wrap(vars(tipo))
-                print(graf)})
+                graf})
         
         
         output$hist <- renderPlot({grafico()})
@@ -68,3 +68,7 @@ server <-
     }
 
 shinyApp(ui, server)
+
+# No usar el print en esos casos, mejor retornar el objeto directamente o usar return()
+# Estaba generando que no se actualizará el gráfico entre tabsets
+# Puntaje 9/10
